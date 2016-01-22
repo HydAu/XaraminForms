@@ -12,7 +12,7 @@ namespace XamFormsImageResize
 		#endif
 		#if __ANDROID__
 		public static string ResourcePrefix = "XamFormsImageResize.Android.";
-		#endif 
+		#endif
 		#if WINDOWS_PHONE
 		public static string ResourcePrefix = "XamFormsImageResize.WinPhone.";
 		#endif
@@ -33,7 +33,7 @@ namespace XamFormsImageResize
 				Text = "ResizeImage"
 			};
 			this._resizeImageButton.Clicked += (object sender, EventArgs e) => {
-				this.ResizeImage();
+				this.ResizeImage ();
 			};
 
 			this._mainLayout.Children.Add (this._resizeImageButton);
@@ -50,22 +50,21 @@ namespace XamFormsImageResize
 			base.OnAppearing ();
 
 
-			var assembly = typeof(HomePage).GetTypeInfo().Assembly;
-			foreach (var res in assembly.GetManifestResourceNames()) 
-				System.Diagnostics.Debug.WriteLine("found resource: " + res);
+			var assembly = typeof(HomePage).GetTypeInfo ().Assembly;
+			foreach (var res in assembly.GetManifestResourceNames())
+				System.Diagnostics.Debug.WriteLine ("found resource: " + res);
 
 		}
 
-		protected void ResizeImage() 
+		protected void ResizeImage ()
 		{
-			var assembly = typeof(HomePage).GetTypeInfo().Assembly;
+			var assembly = typeof(HomePage).GetTypeInfo ().Assembly;
 			byte[] imageData;
 
-			Stream stream = assembly.GetManifestResourceStream(ResourcePrefix + "OriginalImage.JPG");
-			using (MemoryStream ms = new MemoryStream())
-			{
-				stream.CopyTo(ms);
-				imageData = ms.ToArray();
+			Stream stream = assembly.GetManifestResourceStream (ResourcePrefix + "OriginalImage.JPG");
+			using (MemoryStream ms = new MemoryStream ()) {
+				stream.CopyTo (ms);
+				imageData = ms.ToArray ();
 			}
 
 			byte[] resizedImage = ImageResizer.ResizeImage (imageData, 400, 400);
